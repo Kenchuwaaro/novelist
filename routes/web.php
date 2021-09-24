@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::resource('user', 'App\Http\Controllers\UserController');
 Route::resource('novel', 'App\Http\Controllers\NovelController');
+Route::get('{any}', function () {
+    return view('app');
+})->where('any','.*');
