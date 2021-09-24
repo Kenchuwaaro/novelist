@@ -16,6 +16,7 @@
                         <th class="text-center">ID</th>
                         <th class="text-center">タイトル</th>
                         <th class="text-center">著者ID</th>
+                        <th class="text-center">著者名</th>
                         <th class="text-center">削除</th>
                     </tr>
 
@@ -26,6 +27,7 @@
                         </td>
                         <td>{{ $novel->title}}</td>
                         <td>{{ $novel->user_id }}</td>
+                        <td>{{ $novel->author }}</td>
                         <td>
                             <form action="/novel/{{ $novel->id }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
