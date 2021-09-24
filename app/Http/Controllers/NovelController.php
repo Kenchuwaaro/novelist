@@ -12,7 +12,7 @@ class NovelController extends Controller
     {
         $novels = Novel::all();
         $users = User::all();
-        
+
         // 名前をセット
         foreach ( $novels as $novel ){
             foreach ( $users as $user ){
@@ -26,12 +26,17 @@ class NovelController extends Controller
     public function edit($id)
     {
         $novel = Novel::findOrFail($id);
-        return view('novel/edit', compact('novel'));
+        $users = User::all();
+
+        return view('novel/edit')
+            ->with('novel', $novel)
+            ->with('users', $users);
     }
     public function update(Request $request, $id)
     {
         $novel = Novel::findOrFail($id);
         $novel->title = $request->title;
+        $novel->user_id = $request->user_id;
         $novel->save();
         return redirect('/novel');
     }
@@ -44,13 +49,17 @@ class NovelController extends Controller
     public function create()
     {
         $novel = new Novel();
-        return view('novel/create', compact('novel'));
+        $users = User::all();
+        return view('novel/create')
+            ->with('novel', $novel)
+            ->with('users', $users);
     }
 
     public function store(Request $request)
     {
         $novel = new novel();
         $novel->title = $request->title;
+        $novel->user_id = $request->user_id;
         $novel->save();
         return redirect("/novel");
     }

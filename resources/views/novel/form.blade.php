@@ -11,7 +11,6 @@
             <form action="/novel" method="post">
             @elseif($target == 'update')
             <form action="/novel/{{ $novel->id }}" method="post">
-                    <!-- updateメソッドにはPUTメソッドがルーティングされているのでPUTにする -->
                     <input type="hidden" name="_method" value="PUT">
             @endif
 
@@ -19,6 +18,20 @@
                     <div class="form-group">
                         <label for="title">タイトル</label>
                         <input type="text" class="form-control" name="title" value="{{ $novel->title }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_id">タイトル</label>
+                        <select name="user_id" class="form-select form-select-lg mb-3">
+
+                            @foreach( $users as $user )
+                                @if ( $user->id == $novel->user_id )
+                                    <option selected value={{ $user->id }}>{{ $user->name}}</option>
+                                @else
+                                    <option value={{ $user->id }}>{{ $user->name}}</option>
+                                @endif
+                            @endforeach
+
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-default">登録</button>
                     <a href="/novel">戻る</a>

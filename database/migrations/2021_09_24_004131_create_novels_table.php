@@ -16,7 +16,7 @@ class CreateNovelsTable extends Migration
         Schema::create('novels', function (Blueprint $table) {
             $table->id();
             $table->string('title', 1028);
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
