@@ -46,7 +46,8 @@ create table episodes(
     chapter_id bigint,
     foreign key ( chapter_id )
         references chapters(id)
-        on delete cascade
+        on delete cascade,
+    novel text
 );
 
 create table book_shelf_novel_links (
