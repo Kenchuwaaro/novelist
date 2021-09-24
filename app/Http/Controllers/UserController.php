@@ -33,4 +33,19 @@ class UserController extends Controller
         $user->delete();
         return redirect("/user");
     }
+    public function create()
+    {
+        $user = new User();
+        return view('user/create', compact('user'));
+    }
+
+    public function store(Request $request)
+    {
+        $user = new user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+        return redirect("/user");
+    }
 }
